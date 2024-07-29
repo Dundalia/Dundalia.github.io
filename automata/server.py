@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify
-from automata import generate_image
+from automata import get_full_image, plot_clean
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
 
 app = Flask(__name__)
 
@@ -14,7 +17,16 @@ def generate():
     tag_ratio = float(data['tag_ratio'])
     panoramic = data['panoramic']
 
-    image_base64 = generate_image(nrule, niter, resolution, space_ratio, expl_ratio, tag_ratio, panoramic)
+    img, expl_rect = get_full_image(nrule, niter, resolution, space_ratio, expl_ratio, tag_ratio, panoramic)
+    fig = plot_clean(img, expl_rect=expl_rect, color_rect="white")
+
+    buf = BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+    image_base64 = base64.b64encode(buf.read()).decode('utf-8')
+    buf.close()
+
+    plt.close(fig)  # Close the figure to free memory
 
     return jsonify({'image': image_base64})
 
