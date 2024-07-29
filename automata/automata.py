@@ -36,17 +36,6 @@ def run_rule(r,c,image,rulecode):
             else:
                 image[r,c]=rulecode[7]*1
 
-def generate_automata(nrule,niter, panoramic=False):
-    image=np.ones((niter,niter))
-    image[0,(niter-1)//2]=0    
-    rulecode = get_rulecode(nrule)
-    for nraw in range(1,niter):
-        for ncol in range(1,niter-1):
-            run_rule(nraw,ncol,image,rulecode)
-    if panoramic:
-        image = image[niter//2:, :]
-    return(1-image)
-
 def generate_automata(nrule,niter, resolution=None, panoramic=False, video_mode=False, video_out="videos/video-0"):
     shape = (niter,niter*2)
     #if resolution is None:

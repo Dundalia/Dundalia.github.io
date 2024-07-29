@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cellular Automata Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cellular Automata Generator</h1>
+        <form id="automata-form">
+            <label for="nrule">Rule Number:</label>
+            <input type="number" id="nrule" name="nrule" required>
+            <label for="niter">Iterations:</label>
+            <input type="number" id="niter" name="niter" required>
+            <label for="resolution">Resolution:</label>
+            <input type="number" id="resolution" name="resolution" required>
+            <label for="space_ratio">Space Ratio:</label>
+            <input type="number" step="0.01" id="space_ratio" name="space_ratio" required>
+            <label for="expl_ratio">Exploration Ratio:</label>
+            <input type="number" step="0.01" id="expl_ratio" name="expl_ratio" required>
+            <label for="tag_ratio">Tag Ratio:</label>
+            <input type="number" step="0.01" id="tag_ratio" name="tag_ratio" required>
+            <label for="panoramic">Panoramic:</label>
+            <input type="checkbox" id="panoramic" name="panoramic">
+            <button type="submit">Generate</button>
+        </form>
+        <div id="result">
+            <img id="automata-image" src="" alt="Generated Automata">
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
