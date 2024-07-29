@@ -9,7 +9,7 @@ document.getElementById('automata-form').addEventListener('submit', async functi
     const tag_ratio = document.getElementById('tag_ratio').value;
     const panoramic = document.getElementById('panoramic').checked;
 
-    const response = await fetch('https://your-backend-url.onrender.com/generate', {
+    const response = await fetch('https://dundalia-github-io.onrender.com', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
