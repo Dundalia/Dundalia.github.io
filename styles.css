@@ -93,6 +93,13 @@
     gap: 10px;
     margin-top: 10px;
   }
+
+  .contact-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
   
   .my-email {
     font-family: monospace;
@@ -223,12 +230,12 @@
     }
     
     .profile-picture-container {
-      width: 80%;
-      height: 80%;
+      width: 50%;
+      height: 50%;
     }
   
     .name {
-      width: 80%;
+      width: 60%;
       text-align: center;
     }
   
@@ -237,10 +244,26 @@
     }
   
     .contact-row {
-      /* flex-direction: column; */
+      flex-direction: column;
       gap: 16px;
     }
-  
+
+    .logo{
+        width: 32px;
+        height: 32px;
+    }
+
+    .contact-links{
+        display: flex;
+        gap: 65px;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .divider{
+        display: none;
+    }
+
     .my-email {
       font-size: 1.5em;
     }
