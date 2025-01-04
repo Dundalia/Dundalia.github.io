@@ -18,7 +18,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    background-color: #f6cefc; /* fallback background */
+    background-color: #CBCCCD; /* fallback background */
     color: #333;
   }
   
@@ -216,7 +216,7 @@
   /* ========================================= */
   /*           MEDIA QUERIES FOR MOBILE        */
   /* ========================================= */
-  @media (max-width: 600px) {
+  @media (max-width: 767px) {
     /* Let’s reduce margins and adjust widths for small screens */
     .profile-container {
       margin-top: 30px;
