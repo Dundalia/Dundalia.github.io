@@ -223,8 +223,8 @@
     }
     
     .profile-picture-container {
-      width: 200px;
-      height: 200px;
+      width: 80%;
+      height: 80%;
     }
   
     .name {
@@ -237,8 +237,8 @@
     }
   
     .contact-row {
-      flex-direction: column;
-      gap: 5px;
+      /* flex-direction: column; */
+      gap: 16px;
     }
   
     .my-email {
