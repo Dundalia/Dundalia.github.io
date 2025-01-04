@@ -1,0 +1,209 @@
+/* General page reset/basics */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+  
+    /* Last requirement: set background image */
+    background-image: url("media/background.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  
+    background-color: #f6cefc; 
+    /* If you want a white fallback color, uncomment:
+       background-color: white; 
+    */
+    color: #333;
+  }
+  
+  /* Icon in the top-right corner */
+  .language-switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .language-switch img {
+    width: 30px;      /* Adjust as needed */
+    height: auto;
+    box-shadow: 
+        #f9f9f9 0px 0px 4px,
+        #f9f9f9 0px 0px 10px,
+        #f9f9f9 0px 0px 20px;
+
+  }
+  
+  /* Profile column container */
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px; /* Push down from the top for breathing room */
+  }
+  
+  /* Profile picture styling */
+  /* The container retains the original size and clips overflow */
+.profile-picture-container {
+    width: 220px;
+    height: 220px;
+    border-radius: 40%;
+    overflow: hidden;       /* Ensures zoomed image is clipped */
+    margin-bottom: 20px;
+  }
+  
+/* The image itself */
+.profile-picture {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 40%;
+transition: transform 0.4s ease-in-out;
+}
+  
+.profile-picture:hover {
+transform: scale(1.1); /* Zoom effect on hover */
+}
+  
+
+  .name {
+    width: 180px;
+    margin-bottom: 20px;
+    transition: 0.5s ease;
+  }
+
+  .name:hover {
+    filter: drop-shadow(0px 0px 6px #E7ABFF)
+  }
+  
+  
+  /* Name as a heading */
+  .my-name {
+    font-size: 2em;
+    margin: 0;
+  }
+  
+  /* Row with email, divider, and social logos */
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .my-email {
+    font-family: monospace;
+    font-size: 1.5em;
+  }
+  
+  .divider {
+    font-size: 1.2em;
+  }
+  
+  /* Social/media logos */
+  .logo {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Gray container for sections */
+  .info-container {
+    background-color: #f5f5f5;
+    width: 80%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 
+        #f5f5f5 0px 0px 4px,
+        #f5f5f5 0px 0px 10px;
+  }
+  
+  /* Generic section + divider */
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  .section h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #58256D;
+  }
+  
+  .section hr {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #aaa;
+  }
+  
+  /* Bold spans in paragraphs */
+  .bold {
+    font-weight: bold;
+  }
+  
+  /* EXPERIENCE layout */
+  .experience-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+  
+  .experience-item .left {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .experience-item .left h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .experience-item .left h4 {
+    margin: 0;
+    font-size: 1em;
+    color: #555;
+  }
+  
+  .experience-item .right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  /* Logo on the right side for experience */
+  .experience-item .right img {
+    width: 40px;
+    height: auto;
+    margin-bottom: 5px;
+  }
+  
+  /* Time frame in italics and softer color */
+  .time-frame {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  /* PUBLICATIONS layout */
+  .publication-item {
+    margin: 10px 0;
+  }
+  
+  /* Bold link for publication title */
+  .paper-link {
+    text-decoration: none;
+    color: #000; /* or #333 if you prefer */
+  }
+  
+  /* Smaller, italic, softer for publication details */
+  .paper-details {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 1.5em; /* small indent if you like */
+  }
+  

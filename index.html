@@ -1,102 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Profile</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Icon in the top-right corner that links to the Italian version -->
+    <div class="language-switch">
+      <a href="index_italian.html">
+        <img src="media/logos/italy.png" alt="Italian version" />
+      </a>
+    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" 
-          content="width=device-width, initial-scale=1.0">
-    <!--The above meta characteristics make a website 
-        compatible with different devices. -->
-    <title>Dundalia</title>
-    <style>
-        /* CSS to style the text */
-        body {
-            font-family: Courier;
-            background-color: grey;
-            /* Background color */
-        }
+    <!-- Main profile column -->
+    <div class="profile-container">
+      <!-- Profile picture -->
+      <div class="profile-picture-container">
+        <img 
+            src="media/profile_picture.png" 
+            alt="Profile picture" 
+            class="profile-picture"
+            />
+      </div>
 
-        .red-text {
-            color: red;
-            /* Text color */
-        }
 
-        p {
-            color: white;
-            font-size: 20px;
-            font-weight: 600;
-            text-align: center;
-        }
+      <!-- Name as a heading -->
+      <img
+        class="name"
+        src="media/name.png"
+        alt="Name"
+      />
+      <!--
+      <h1 class="my-name">Davide Baldelli</h1>
+      -->
 
-        footer {
-            display: flex;
-            justify-content: space-around;
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-        }
+      <!-- Row with email, divider, and logos -->
+      <div class="contact-row">
+        <span class="my-email">davide.baldelli98@gmail.com</span>
+        <span class="divider">|</span>
 
-        .column {
-            width: 27%;
-        }
- 
-        p {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
- 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
- 
-        li {
-            margin-bottom: 5px;
-        }
-    </style>
-</head>
+        <!-- GitHub -->
+        <a href="https://github.com/johndoe" target="_blank">
+          <img src="media/logos/github.png" class="logo" alt="GitHub" />
+        </a>
 
-<header>
-    <h1 style="text-align: center">Davide Baldelli</h1>
-</header>
+        <!-- Medium -->
+        <!-- 
+        <a href="https://medium.com/@johndoe" target="_blank">
+          <img src="media/logos/medium.png" class="logo" alt="Medium" />
+        </a>
+        -->
 
-<body>
-    <p>Welcome to My GitHub Profile</p>
-    <p>This is my GitHub profile page.</p>
-    <p><a href="automata/index.html">Cellular Automata Generator</a></p>
-    <footer>
-        <div class="column">
-            <p>Contacts</p>
-            <ul>
-                <li>Linkedin</li>
-                <li>Github</li>
-            </ul>
+
+        <!-- Scholar -->
+        <a
+          href="https://scholar.google.com/citations?user=some_scholar_id"
+          target="_blank"
+        >
+          <img src="media/logos/google_scholar.png" class="logo" alt="Google Scholar" />
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/in/johndoe" target="_blank">
+          <img src="media/logos/linkedin.png" class="logo" alt="LinkedIn" />
+        </a>
+
+        <!-- CV -->
+        <a href="media/JohnDoe_CV.pdf" target="_blank">
+          <img src="media/logos/cv.png" class="logo" alt="CV" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Container with #dfdfdf background, holding all sections -->
+    <div class="info-container">
+      <!-- Bio section -->
+      <section class="section">
+        <h2>Bio</h2>
+        <hr />
+        <p>
+          Hello! I’m a <span class="bold">software engineer</span> with a strong
+          interest in <span class="bold">AI research</span> and
+          <span class="bold">data science</span>. Always eager to learn, build,
+          and share knowledge.
+        </p>
+      </section>
+
+      <!-- Experience section -->
+      <section class="section">
+        <h2>Experience</h2>
+        <hr />
+
+        <!-- Example experience 1 -->
+        <div class="experience-item">
+          <div class="left">
+            <h3>International Internship Program</h3>
+            <h4>National Institute of Informatics, Tokyo, Japan</h4>
+          </div>
+          <div class="right">
+            <img src="media/logos/nii.png" alt="Google Logo" />
+            <span class="time-frame">Feb 2023 – Aug 2023</span>
+          </div>
         </div>
- 
-        <div class="column">
-            <p>Learn</p>
-            <ul>
-                <li>Algorithms</li>
-                <li>Data Structures</li>
-                <li>Languages</li>
-                <li>CS Subjects</li>
-                <li>Video Tutorials</li>
-            </ul>
+
+      </section>
+
+      <!-- Experience section -->
+      <section class="section">
+        <h2>Education</h2>
+        <hr />
+
+        <!-- Example experience 1 -->
+        <div class="experience-item">
+          <div class="left">
+            <h3>Master's Degree in Artificial Intelligence</h3>
+            <h4>University of Bologna, Italy</h4>
+          </div>
+          <div class="right">
+            <img src="media/logos/unibo.png" alt="Google Logo" />
+            <span class="time-frame">2021 – 2023</span>
+          </div>
         </div>
- 
-        <div class="column">
-            <p>Practice</p>
-            <ul>
-                <li>Company-wise</li>
-                <li>Topic-wise</li>
-                <li>Contests</li>
-                <li>Subjective Questions</li>
-            </ul>
+
+        <!-- Example experience 2 -->
+        <div class="experience-item">
+          <div class="left">
+            <h3>Bachelor's Degree in Mathematics</h3>
+            <h4>University of Florence, Italy</h4>
+          </div>
+          <div class="right">
+            <img src="media/logos/unifi.png" alt="MIT Logo" />
+            <span class="time-frame">2017 - 2021</span>
+          </div>
         </div>
-    </footer>
+      </section>
 
 
-</body>
+      <!-- Publications section -->
+      <section class="section">
+        <h2>Publications</h2>
+        <hr />
 
+        <!-- Example publication 1 -->
+        <div class="publication-item">
+          <a href="https://arxiv.org/abs/2403.17759" class="paper-link">
+            <strong>TWOLAR: a TWO-step LLM-Augmented distillation method for passage Reranking</strong>
+          </a>
+          <div class="paper-details">
+            <em>46th European Conference on Information Retrieval, ECIR 2024</em>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </body>
 </html>
