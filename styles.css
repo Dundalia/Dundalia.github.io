@@ -30,7 +30,7 @@
   }
   
   .language-switch img {
-    width: 30px; /* Adjust as needed */
+    width: 40px; /* Adjust as needed */
     height: auto;
     box-shadow: 
       #f9f9f9 0px 0px 4px,
@@ -216,7 +216,7 @@
   /* ========================================= */
   /*           MEDIA QUERIES FOR MOBILE        */
   /* ========================================= */
-  @media (max-width: 1200px) {
+  @media (max-width: 767px) {
     /* Let’s reduce margins and adjust widths for small screens */
     .profile-container {
       margin-top: 30px;
@@ -228,7 +228,7 @@
     }
   
     .name {
-      width: 100%;
+      width: 80%;
       text-align: center;
     }
   
@@ -242,12 +242,12 @@
     }
   
     .my-email {
-      font-size: 1.1em;
+      font-size: 1.5em;
     }
   
     .info-container {
       width: 90%;
-      margin: 20px auto;
+      margin: 40px auto;
       padding: 15px;
     }
   
@@ -256,7 +256,7 @@
     }
   
     .experience-item {
-      flex-direction: column;
+      /*flex-direction: column;*/
       align-items: flex-start;
     }
   
