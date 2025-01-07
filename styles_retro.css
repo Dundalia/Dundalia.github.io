@@ -32,17 +32,12 @@
   .language-switch img {
     width: 40px; /* Adjust as needed */
     height: auto;
-    transition: 0.3s ease;
     /*box-shadow: 
       #f9f9f9 0px 0px 4px,
       #f9f9f9 0px 0px 10px,
       #f9f9f9 0px 0px 20px;*/
   }
   
-  .language-switch:hover img {
-    filter: brightness(1.1);
-  }
-
   /* Profile column container */
   .profile-container {
     display: flex;
@@ -124,7 +119,7 @@
     background-color: #DFDFDF;
     width: 80%;
     max-width: 800px;
-    margin: 40px auto;
+    margin: 0 0;
     padding: 20px;
     border-radius: 16px;
     box-shadow: 

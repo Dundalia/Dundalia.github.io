@@ -1,0 +1,85 @@
+/* 1) Remove default padding & margin on body/html */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #e9e9e9;
+    /* If you want absolutely no horizontal scroll anywhere, do: */
+    overflow-x: hidden;
+    /* If you still want vertical scrolling for tall content, keep overflow-y auto or default */
+    font-family: sans-serif;
+  }
+  
+  /* 2) Remove default H1 margin for a flush look (optional) */
+  h1 {
+    margin: 0.5rem;
+    text-align: center; /* if you want it centered */
+  }
+  
+  /* 3) Style the form (optional) */
+  #ca-form {
+    text-align: center;
+    margin: 0 0;
+  }
+  
+  /* 4) The container that holds the canvas:
+     - 100vw wide
+     - hides horizontally if the canvas is too big
+     - centers the canvas vertically & horizontally
+  */
+  .canvas-container {
+    width: 100vw;
+    height: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: bottom;
+    overflow-x: hidden;
+    opacity: 50%;
+  }
+  
+  /* 5) The canvas itself:
+     - no border, no extra margin
+  */
+  #ca-canvas {
+    display: block;
+    margin: 0;       /* remove any default margin */
+    padding: 0;      /* remove any default padding */
+    /* border: 1px dashed #ccc;  <-- only if you want debugging */
+  }
+  
+
+  .start-button {
+    background-color: #c8c8c8; /* Classic gray button background */
+    border: 2px solid #ffffff; /* Top-left highlight */
+    border-right-color: black; /* Bottom-right shadow */
+    border-bottom-color: #a1a1a1;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    padding: 5px 10px;
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+    width: 120px;
+}
+
+.start-button:active {
+    border: 2px solid #808080; /* Invert highlight and shadow for pressed effect */
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    border-top-color: #808080;
+    border-left-color: #808080;
+    background-color: #808080;
+}
+
+.start-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    background: linear-gradient(90deg, #ff0000 25%, #00ff00 25%, #00ff00 50%, #0000ff 50%, #0000ff 75%, #ffff00 75%);
+    display: flex;
+    border: 1px solid #000;
+}
+
+.start-text {
+    text-shadow: 1px 1px 0px #ffffff, -1px -1px 0px #000000; /* Text style */
+}
