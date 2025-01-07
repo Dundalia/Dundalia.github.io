@@ -32,10 +32,10 @@
   .language-switch img {
     width: 40px; /* Adjust as needed */
     height: auto;
-    box-shadow: 
+    /*box-shadow: 
       #f9f9f9 0px 0px 4px,
       #f9f9f9 0px 0px 10px,
-      #f9f9f9 0px 0px 20px;
+      #f9f9f9 0px 0px 20px;*/
   }
   
   /* Profile column container */
@@ -63,20 +63,13 @@
     border-radius: 40%;
     transition: transform 1s ease-in-out;
   }
-  
-  .profile-picture:hover {
-    transform: scale(1.15);
-  }
+
   
   /* Name styling */
   .name {
     width: 180px;
     margin-bottom: 20px;
     transition: 0.5s ease;
-  }
-  
-  .name:hover {
-    filter: drop-shadow(0px 0px 6px #E7ABFF);
   }
   
   .my-name {
@@ -114,19 +107,24 @@
   .logo {
     width: 24px;
     height: 24px;
+    transition: 0.2s ease;
+  }
+
+  a:hover .logo {
+    opacity: 0.7;
   }
   
   /* Gray container for sections */
   .info-container {
-    background-color: #f5f5f5;
+    background-color: #DFDFDF;
     width: 80%;
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
     border-radius: 16px;
     box-shadow: 
-      #f5f5f5 0px 0px 4px,
-      #f5f5f5 0px 0px 10px;
+      #c9c9c9 0px 0px 10px;
+      /* #f5f5f5 0px 0px 10px; */
     transition: 0.5s ease;
   }
   
@@ -143,7 +141,8 @@
   
   .section h2 {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1.4em;
+    font-weight: 600;
     color: #58256D;
   }
   
@@ -172,12 +171,15 @@
   
   .experience-item .left h3 {
     margin: 0;
-    font-size: 1.2em;
+    font-weight: 600;
+    font-size: 1.1em;
   }
   
   .experience-item .left h4 {
     margin: 0;
+    font-weight: 500;
     font-size: 1em;
+    font-style: italic;
     color: #555;
   }
   
@@ -189,7 +191,7 @@
   
   /* Logo on the right side for experience */
   .experience-item .right img {
-    width: 40px;
+    width: 32px;
     height: auto;
     margin-bottom: 5px;
   }
