@@ -81,6 +81,8 @@
     /* Using 2em relative to html font-size. If html font-size is 16px, 
        2em = 32px. Adjust as needed. */
     font-size: 2em; 
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 0px 0px 1px black;
     margin: 0;
   }
   
