@@ -2,6 +2,16 @@ source 'https://rubygems.org'
 
 gem 'jekyll'
 
+# Compatibility pins for Ruby 3.4 toolchain
+gem 'stringio', '>= 3.1.0'
+
+# Ruby 3.4+ no longer ships these as default gems
+gem 'csv'
+gem 'logger'
+gem 'base64'
+gem 'bigdecimal'
+gem 'sass-embedded'
+
 # Core plugins that directly affect site building
 group :jekyll_plugins do
     gem 'jekyll-archives-v2'
@@ -15,6 +25,7 @@ group :jekyll_plugins do
     gem 'jekyll-paginate-v2'
     gem 'jekyll-regex-replace'
     gem 'jekyll-scholar'
+    gem 'jekyll-sass-converter', '>= 3.0'
     gem 'jekyll-sitemap'
     gem 'jekyll-tabs'
     gem 'jekyll-terser', :git => "https://github.com/RobertoJBeltran/jekyll-terser.git"
@@ -27,7 +38,7 @@ end
 
 # Gems for development or external data fetching (outside :jekyll_plugins)
 group :other_plugins do
-    gem 'css_parser'
+    gem 'css_parser', '>= 1.14.0'
     gem 'feedjira'
     gem 'httparty'
     gem 'observer'       # used by jekyll-scholar

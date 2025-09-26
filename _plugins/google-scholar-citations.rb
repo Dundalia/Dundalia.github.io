@@ -1,9 +1,26 @@
-require "active_support/all"
+#!/usr/bin/env ruby
 require 'nokogiri'
 require 'open-uri'
 
 module Helpers
-  extend ActiveSupport::NumberHelper
+  def self.number_to_human(number, format: '%n%u', precision: 2, units: { thousand: 'K', million: 'M', billion: 'B' })
+    return '0' if number.nil?
+    n = number.to_f
+    unit = ''
+    scaled = n
+    if n >= 1_000_000_000
+      unit = units[:billion]
+      scaled = n / 1_000_000_000.0
+    elsif n >= 1_000_000
+      unit = units[:million]
+      scaled = n / 1_000_000.0
+    elsif n >= 1_000
+      unit = units[:thousand]
+      scaled = n / 1_000.0
+    end
+    value = (scaled.round(precision)).to_s.sub(/\.0+$/, '')
+    format.gsub('%n', value).gsub('%u', unit)
+  end
 end
 
 module Jekyll
@@ -66,7 +83,7 @@ module Jekyll
             end
           end
 
-        citation_count = Helpers.number_to_human(citation_count, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' })
+        citation_count = Helpers.number_to_human(citation_count, format: '%n%u', precision: 2, units: { thousand: 'K', million: 'M', billion: 'B' })
 
       rescue Exception => e
         # Handle any errors that may occur during fetching
