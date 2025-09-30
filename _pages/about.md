@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: <a href='https://mila.quebec' target='_blank' rel='noopener'>MILA</a> · davide.baldelli@mila.quebec
 
 profile:
   align: right
