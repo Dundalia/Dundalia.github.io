@@ -6,5 +6,5 @@ inline: true
 related_posts: false
 ---
 
-I started my PhD at MILA and Polytechnique Montréal with Sarath Chandar and Amal Zouaq.
+I started my PhD at (MILA)[https://mila.quebec/en] and Polytechnique Montréal with Sarath Chandar and Amal Zouaq.
 

@@ -6,5 +6,5 @@ inline: true
 related_posts: false
 ---
 
-I was selected to participate in the Y Combinator AI Startup School in San Francisco ([events.ycombinator.com/ai-sus](https://events.ycombinator.com/ai-sus)).
+I was selected to participate in the [Y Combinator AI Startup School](https://events.ycombinator.com/ai-sus) in San Francisco.
 

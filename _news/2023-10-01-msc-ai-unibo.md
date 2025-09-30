@@ -6,5 +6,5 @@ inline: true
 related_posts: false
 ---
 
-I obtained the MSc in AI with maximum grade from the University of Bologna ([unibo.it](https://www.unibo.it/en)).
+I obtained the MSc in AI with maximum grade from the [University of Bologna](https://www.unibo.it/en).
 

@@ -6,5 +6,5 @@ inline: true
 related_posts: false
 ---
 
-Our paper TWOLAR ([arXiv:2403.17759](https://arxiv.org/abs/2403.17759)) has been accepted at ECIR 2024 ([ecir2024.org](https://www.ecir2024.org)).
+Our paper [TWOLAR](https://arxiv.org/abs/2403.17759) has been accepted at [ECIR 2024](https://www.ecir2024.org)!
 

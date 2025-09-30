@@ -6,5 +6,5 @@ inline: true
 related_posts: false
 ---
 
-I have been selected to join **ARENA 7.0** (Alignment Research Engineer Accelerator), which will be held at LISA (London Initiative for Safe AI), London, UK, in January 2026. See the programme details at [arena.education](https://www.arena.education).
+I have been selected to join [**ARENA 7.0**](https://www.arena.education) (Alignment Research Engineer Accelerator), which will be held at LISA (London Initiative for Safe AI), London, UK, in January 2026.
 
