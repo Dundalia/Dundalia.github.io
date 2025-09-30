@@ -6,5 +6,5 @@ inline: true
 related_posts: false
 ---
 
-Our paper “CADmium: Fine-Tuning Code Language Models for Text-Driven Sequential CAD Design” is now on arXiv: [arXiv:2507.09792](https://arxiv.org/abs/2507.09792).
+Our paper “*CADmium: Fine-Tuning Code Language Models for Text-Driven Sequential CAD Design*” is now on arXiv: [arXiv:2507.09792](https://arxiv.org/abs/2507.09792).
 
