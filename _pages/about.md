@@ -31,4 +31,4 @@ I am a first-year PhD student at MILA and Polytechnique Montréal, advised by [S
 
 Previously, I was a researcher at the National Institute of Informatics (Tokyo) under the supervision of [Akiko Aizawa](https://scholar.google.com/citations?user=JQy5hPoAAAAJ&hl=en). I received an MSc in Artificial Intelligence from the University of Bologna in October 2023, where I was supervised by [Paolo Torroni](https://scholar.google.com/citations?hl=en&user=uOZZjwsAAAAJ).
 
-[Download my CV (PDF)](https://dundalia.github.io/CV/cv.pdf){: target="_blank" rel="noopener"}
+<!-- [Download my CV (PDF)](https://dundalia.github.io/CV/cv.pdf){: target="_blank" rel="noopener"} -->
