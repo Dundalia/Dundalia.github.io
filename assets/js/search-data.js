@@ -17,8 +17,8 @@ ninja.data = [{
             window.location.href = "/publications/";
           },
         },{id: "nav-cv",
-          title: "cv",
-          description: "This is a description of the page. You can modify it in &#39;_pages/cv.md&#39;. You can also change or remove the top pdf download button.",
+          title: "CV",
+          description: "",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
@@ -391,16 +391,20 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-a-simple-inline-announcement",
-          title: 'A simple inline announcement.',
+            },},{id: "news-i-obtained-the-msc-in-ai-with-maximum-grade-from-the-university-of-bologna-unibo-it",
+          title: 'I obtained the MSc in AI with maximum grade from the University of...',
           description: "",
-          section: "News",},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
+          section: "News",},{id: "news-our-paper-twolar-arxiv-2403-17759-has-been-accepted-at-ecir-2024-ecir2024-org",
+          title: 'Our paper TWOLAR (arXiv:2403.17759) has been accepted at ECIR 2024 (ecir2024.org).',
           description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+          section: "News",},{id: "news-i-started-my-phd-at-mila-and-polytechnique-montréal-with-sarath-chandar-and-amal-zouaq",
+          title: 'I started my PhD at MILA and Polytechnique Montréal with Sarath Chandar and...',
+          description: "",
+          section: "News",},{id: "news-i-was-selected-to-participate-in-the-y-combinator-ai-startup-school-in-san-francisco-events-ycombinator-com-ai-sus",
+          title: 'I was selected to participate in the Y Combinator AI Startup School in...',
+          description: "",
+          section: "News",},{id: "news-our-paper-cadmium-fine-tuning-code-language-models-for-text-driven-sequential-cad-design-is-now-on-arxiv-arxiv-2507-09792",
+          title: 'Our paper “CADmium: Fine-Tuning Code Language Models for Text-Driven Sequential CAD Design” is...',
           description: "",
           section: "News",},{id: "projects-project-1",
           title: 'project 1',
