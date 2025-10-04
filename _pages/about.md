@@ -10,11 +10,8 @@ profile:
   image_circular: false # crops the image to make it circular
   more_info: >
     <p><a href='https://mila.quebec' target='_blank' rel='noopener'>MILA</a></p>
-
     <p><a href='https://www.polymtl.ca' target='_blank' rel='noopener'>Polytechnique Montréal</a></p>
-
     <p><a href='https://chandar-lab.github.io' target='_blank' rel='noopener'>Chandar Research Lab</a></p>
-
     <p><a href='http://www.labowest.ca' target='_blank' rel='noopener'>LAMA-WeST Lab</a></p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
