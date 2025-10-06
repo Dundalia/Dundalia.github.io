@@ -7,4 +7,10 @@ nav_order: 5
 description:
 ---
 
-[View CV (PDF)](https://dundalia.github.io/CV/cv.pdf){: .btn .btn-primary target="_blank" rel="noopener"}
+Click the button to view my curriculum vitae. Last updated: October 2025.
+
+<div style="text-align: left;">
+  <a href="https://dundalia.github.io/CV/cv.pdf" class="btn btn-primary" target="_blank" rel="noopener">
+    <i class="fa-solid fa-file-pdf"></i> CV
+  </a>
+</div>
