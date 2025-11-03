@@ -462,6 +462,13 @@ ninja.data = [{
           window.open("mailto:%64%61%76%69%64%65.%62%61%6C%64%65%6C%6C%69@%6D%69%6C%61.%71%75%65%62%65%63", "_blank");
         },
       },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/Dundalia", "_blank");
+        },
+      },{
         id: 'social-linkedin',
         title: 'LinkedIn',
         section: 'Socials',
