@@ -308,24 +308,29 @@ ul.task-list input[type="checkbox"] {
   .navbar-brand.social {
     padding-bottom: 0;
     padding-top: 0;
-    font-size: 1.7rem;
+    font-size: 1.05rem;
+    line-height: 1;
 
     a {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 0.45rem;
+
       img {
-        width: 1.7rem;
-        height: 1.7rem;
-        margin-bottom: 0.5rem;
+        width: 1.05rem;
+        height: 1.05rem;
+        margin-bottom: 0;
         // margin: 0.5rem;
       }
 
       svg {
-        width: 1.7rem;
-        height: 1.7rem;
-        margin-bottom: 0.5rem;
+        width: 1.05rem;
+        height: 1.05rem;
+        margin-bottom: 0;
 
         image {
-          width: 1.7rem;
-          height: 1.7rem;
+          width: 1.05rem;
+          height: 1.05rem;
         }
       }
 
@@ -583,6 +588,17 @@ footer.sticky-bottom {
   }
 }
 
+.about-page {
+  .post-title {
+    font-size: 2.25rem;
+    text-transform: uppercase;
+  }
+
+  article h2 {
+    font-size: 1.75rem;
+  }
+}
+
 .post-list {
   margin: 0;
   margin-bottom: 40px;
@@ -736,6 +752,10 @@ footer.sticky-bottom {
       margin-bottom: 1rem;
 
       .preview {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        object-fit: contain;
       }
 
       .abbr {

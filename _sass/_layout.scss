@@ -6,6 +6,7 @@ body {
   padding-bottom: 70px;
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
+  font-family: $serif-font-stack;
 
   h1,
   h2,
@@ -15,6 +16,13 @@ body {
   h6 {
     scroll-margin-top: 66px;
   }
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: $serif-font-stack;
 }
 
 body.fixed-top-nav {
