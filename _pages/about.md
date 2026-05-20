@@ -28,7 +28,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hi, I’m Davide 😊. I am a first-year PhD student at MILA and Polytechnique Montréal, advised by [Sarath Chandar](https://scholar.google.com/citations?hl=en&user=yxWtZLAAAAAJ) and [Amal Zouaq](https://scholar.google.com/citations?hl=en&user=lqDGv9YAAAAJ). 
+Hi, I’m Davide 😊. I am a second-year PhD student at MILA and Polytechnique Montréal, advised by [Sarath Chandar](https://scholar.google.com/citations?hl=en&user=yxWtZLAAAAAJ) and [Amal Zouaq](https://scholar.google.com/citations?hl=en&user=lqDGv9YAAAAJ). 
 
 I am currently participating in [MATS 10.0](https://www.matsprogram.org/), an AI alignment fellowship, in the [LawZero](https://lawzero.org/en) stream, where I am mentored by [Damiano Fornasiere](https://damianofornasiere.github.io/) and [Mirko Bronzi](https://mirkobronzi.altervista.org/). We are working on introspection capabilities in language models.
 
