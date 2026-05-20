@@ -7,7 +7,7 @@ nav_order: 5
 description:
 ---
 
-Click the button to view my curriculum vitae. Last updated: October 2025.
+Click the button to view my curriculum vitae.
 
 <div style="text-align: left;">
   <a href="https://dundalia.github.io/CV/cv.pdf" class="btn btn-primary" target="_blank" rel="noopener">

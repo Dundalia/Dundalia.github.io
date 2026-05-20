@@ -50,7 +50,7 @@ work_url: https://mila.quebec/en/directory/davide-baldelli
 x_username: DavideBald42296
 # youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
 # zotero_username: # your zotero username
-# custom_social: # can be any name here other than the ones already defined above
-#   logo: https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png # can be png, svg, jpg
-#   title: Custom Social
-#   url: https://www.alberteinstein.com/
+lesswrong:
+  logo: https://www.lesswrong.com/favicon.ico
+  title: LessWrong
+  url: https://www.lesswrong.com/users/davide-baldelli
