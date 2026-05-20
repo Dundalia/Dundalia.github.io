@@ -516,6 +516,13 @@ ninja.data = [{
           window.open("https://twitter.com/DavideBald42296", "_blank");
         },
       },{
+        id: 'social-lesswrong',
+        title: 'Lesswrong',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.lesswrong.com/users/davide-baldelli", "_blank");
+        },
+      },{
       id: 'light-theme',
       title: 'Change theme to light',
       description: 'Change the theme of the site to Light',
