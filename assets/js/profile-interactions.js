@@ -588,9 +588,9 @@
     let sweepFrame = 0;
     img.addEventListener("click", () => {
       if (img.closest(".bio-reflow") || sweepFrame) return;
-      const start = performance.now();
+      const sweepStart = performance.now();
       const step = (now) => {
-        const t = Math.min(1, Math.max(0, (now - start) / SWEEP_DURATION));
+        const t = Math.min(1, Math.max(0, (now - sweepStart) / SWEEP_DURATION));
         const reach = 0.45 * Math.sin(Math.PI * t); // distance from the centre: 0, out, back to 0
         const angle = Math.PI * (2 * t - 0.75); // one turn, starting from the top-left
         target = { x: 0.5 + reach * Math.cos(angle), y: 0.5 + reach * Math.sin(angle) };
