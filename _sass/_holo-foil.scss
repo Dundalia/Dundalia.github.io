@@ -18,7 +18,9 @@
 //   its stretched tile always covers the whole photo and no band is cut by a tile edge;
 // - the card's foil mask is replaced by the photo's background mask (--holo-mask), so
 //   the foil stays off the person;
-// - the sunpillar colour stops are written out (the original computes them from --space).
+// - the sunpillar colour stops are written out (the original computes them from --space);
+// - the transparent blacks are written as rgba(): the production minifier turns
+//   hsla(0, 0%, 0%, a) into hsla(0,0,0,a), which is invalid and drops the whole rule.
 
 @mixin holo-foil-layers {
   background-image:
@@ -44,9 +46,9 @@
     ),
     radial-gradient(
       farthest-corner circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
-      hsla(0, 0%, 0%, 0.1) 12%,
-      hsla(0, 0%, 0%, 0.15) 20%,
-      hsla(0, 0%, 0%, 0.25) 120%
+      rgba(0, 0, 0, 0.1) 12%,
+      rgba(0, 0, 0, 0.15) 20%,
+      rgba(0, 0, 0, 0.25) 120%
     );
   background-blend-mode: screen, hue, hard-light;
   -webkit-mask-image: var(--holo-mask, linear-gradient(#000, #000));
