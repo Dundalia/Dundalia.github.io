@@ -11,6 +11,8 @@ profile:
   draggable: true # the photo can be dragged and the bio re-wraps around it
   ascii_hover: false # an ASCII-art version of the photo follows the cursor
   tilt: true # the photo tilts toward the cursor with a light glare
+  holo: true # with tilt, a holographic foil shows on the photo while hovered
+  holo_mask: prof_pic_holo_mask.png # keeps the foil on the background (opaque = foil), from assets/img/
   more_info: >
     <p><a href='https://mila.quebec' target='_blank' rel='noopener'>MILA</a><br>
     <a href='https://www.polymtl.ca' target='_blank' rel='noopener'>Polytechnique Montréal</a><br>

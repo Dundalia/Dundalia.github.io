@@ -3,13 +3,17 @@
 //   laid out with Pretext (https://github.com/chenglou/pretext). Double-click resets it.
 // - `ascii_hover`: an ASCII-art version of the photo follows the cursor and fades behind it.
 // - `tilt`: the photo tilts toward the cursor in 3D, with a light glare following it.
+// - `holo`: with `tilt`, adds a holographic foil while hovered; `holo_mask` limits it to
+//   the background, so the person stays clean like the artwork on a holo card.
 (() => {
   const profile = document.querySelector(".about-page .profile");
   const img = profile && profile.querySelector("img");
   if (!img) return;
 
   if (profile.dataset.asciiHover === "true") setupAsciiHover(img);
-  if (profile.dataset.tilt === "true") setupTilt(img);
+  if (profile.dataset.tilt === "true") {
+    setupTilt(img, profile.dataset.holo === "true" && { mask: profile.dataset.holoMask });
+  }
   if (profile.dataset.draggable === "true") setupReflow(profile, img);
 
   function whenImageReady(image) {
@@ -236,22 +240,54 @@
       requestAnimationFrame(step);
     }
 
+    // While held, the photo sways toward the direction of travel as if it hung from
+    // the grab point: a damped lean driven by horizontal speed (the Trello card trick).
+    const figure = img.closest("figure") || img;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let sway = 0;
+    let swayFrame = 0;
+    let movedX = 0;
+    let pressTimer = 0;
+
+    function animateSway() {
+      sway = sway * 0.85 + 1.2 * Math.tanh(movedX / 20);
+      movedX = 0;
+      if (drag || Math.abs(sway) > 0.05) {
+        figure.style.rotate = `${sway.toFixed(2)}deg`;
+        swayFrame = requestAnimationFrame(animateSway);
+      } else {
+        sway = 0;
+        swayFrame = 0;
+        figure.style.rotate = "";
+      }
+    }
+
     img.addEventListener("pointerdown", (event) => {
       if (!enabled || event.button !== 0) return;
       event.preventDefault();
       const current = { x: profile.offsetLeft, y: profile.offsetTop };
-      drag = { id: event.pointerId, dx: event.pageX - current.x, dy: event.pageY - current.y };
+      drag = { id: event.pointerId, dx: event.pageX - current.x, dy: event.pageY - current.y, lastX: event.pageX };
       img.setPointerCapture(event.pointerId);
-      profile.classList.add("is-dragging");
+
+      // Pinch for a moment, then lift, scaling around the point where it was grabbed.
+      const box = figure.getBoundingClientRect();
+      figure.style.transformOrigin = `${event.clientX - box.left}px ${event.clientY - box.top}px`;
+      profile.classList.add("is-dragging", "is-pressed");
+      clearTimeout(pressTimer);
+      pressTimer = setTimeout(() => profile.classList.remove("is-pressed"), 90);
+      if (!reducedMotion && !swayFrame) swayFrame = requestAnimationFrame(animateSway);
     });
     const endDrag = (event) => {
       if (!drag || event.pointerId !== drag.id) return;
       drag = null;
-      profile.classList.remove("is-dragging");
+      clearTimeout(pressTimer);
+      profile.classList.remove("is-dragging", "is-pressed");
     };
     img.addEventListener("pointermove", (event) => {
       if (!drag || event.pointerId !== drag.id) return;
       if (event.pointerType === "mouse" && !(event.buttons & 1)) return endDrag(event); // released outside the page
+      movedX += event.pageX - drag.lastX;
+      drag.lastX = event.pageX;
       pos = { x: event.pageX - drag.dx, y: event.pageY - drag.dy };
       schedule();
     });
@@ -454,36 +490,40 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 3D tilt with a light glare
+  // 3D tilt with a light glare, optionally over a rainbow foil sheen
   // ---------------------------------------------------------------------------
 
-  function setupTilt(img) {
+  function setupTilt(img, holo) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const MAX_TILT = 8; // degrees at the edges of the photo
 
-    const host = img.parentElement; // <picture>, so the glare tilts with the photo
+    const host = img.parentElement; // <picture>, so the overlays tilt with the photo
     const frameBox = host.parentElement; // never transformed, gives stable pointer geometry
     host.classList.add("has-tilt");
-    const glare = document.createElement("span");
-    glare.className = "profile-glare";
-    glare.setAttribute("aria-hidden", "true");
-    host.append(glare);
+    host.style.borderRadius = getComputedStyle(img).borderRadius; // inherited by the overlays
+    if (holo && holo.mask) host.style.setProperty("--holo-mask", `url("${holo.mask}")`);
+    for (const name of holo ? ["profile-holo", "profile-glare"] : ["profile-glare"]) {
+      const layer = document.createElement("span");
+      layer.className = name;
+      layer.setAttribute("aria-hidden", "true");
+      host.append(layer);
+    }
 
     let target = null; // pointer position over the photo, in 0..1 on both axes
     let frame = 0;
 
+    // The overlays are drawn in CSS from --pointer-x and --pointer-y.
     function apply() {
       frame = 0;
+      host.classList.toggle("is-tilting", Boolean(target));
       if (!target) {
         host.style.transform = "";
-        glare.style.opacity = "0";
         return;
       }
       const { x, y } = target;
       host.style.transform = `perspective(800px) rotateX(${(0.5 - y) * 2 * MAX_TILT}deg) rotateY(${(x - 0.5) * 2 * MAX_TILT}deg) scale(1.03)`;
-      glare.style.borderRadius = getComputedStyle(img).borderRadius;
-      glare.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255, 236, 214, 0.18), rgba(255, 236, 214, 0) 55%)`;
-      glare.style.opacity = "1";
+      host.style.setProperty("--pointer-x", `${x * 100}%`);
+      host.style.setProperty("--pointer-y", `${y * 100}%`);
     }
 
     function schedule() {
@@ -501,6 +541,31 @@
     img.addEventListener("pointerleave", () => {
       target = null;
       schedule();
+    });
+
+    // Where the photo can't be dragged (small screens, phones), a tap turns it in the
+    // light instead: the light circles the photo once, swelling and fading, so it tilts
+    // in 3D and the foil runs across it, then it settles back.
+    const SWEEP_DURATION = 1400;
+    let sweepFrame = 0;
+    img.addEventListener("click", () => {
+      if (img.closest(".bio-reflow") || sweepFrame) return;
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, Math.max(0, (now - start) / SWEEP_DURATION));
+        const reach = 0.45 * Math.sin(Math.PI * t); // distance from the centre: 0, out, back to 0
+        const angle = Math.PI * (2 * t - 0.75); // one turn, starting from the top-left
+        target = { x: 0.5 + reach * Math.cos(angle), y: 0.5 + reach * Math.sin(angle) };
+        if (t < 1) {
+          apply();
+          sweepFrame = requestAnimationFrame(step);
+        } else {
+          sweepFrame = 0;
+          target = null;
+          apply();
+        }
+      };
+      sweepFrame = requestAnimationFrame(step);
     });
   }
 })();

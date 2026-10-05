@@ -27,6 +27,12 @@ layout: default
         {% if page.profile.tilt %}
           data-tilt="true"
         {% endif %}
+        {% if page.profile.holo %}
+          data-holo="true"
+        {% endif %}
+        {% if page.profile.holo_mask %}
+          data-holo-mask="{{ page.profile.holo_mask | prepend: 'assets/img/' | relative_url }}"
+        {% endif %}
       >
         {% if page.profile.image %}
           {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
