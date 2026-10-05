@@ -1,6 +1,7 @@
 ---
 layout: page
 permalink: /cv/
+redirect: https://dundalia.github.io/CV/cv.pdf
 title: CV
 nav: true
 nav_order: 5

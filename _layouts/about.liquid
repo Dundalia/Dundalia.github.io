@@ -16,7 +16,18 @@ layout: default
 
   <article>
     {% if page.profile %}
-      <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
+      <div
+        class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}"
+        {% if page.profile.draggable %}
+          data-draggable="true"
+        {% endif %}
+        {% if page.profile.ascii_hover %}
+          data-ascii-hover="true"
+        {% endif %}
+        {% if page.profile.tilt %}
+          data-tilt="true"
+        {% endif %}
+      >
         {% if page.profile.image %}
           {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
           {% if page.profile.image_circular %}
@@ -69,3 +80,7 @@ layout: default
     {% endif %}
   </article>
 </div>
+
+{% if page.profile.draggable or page.profile.ascii_hover or page.profile.tilt %}
+  <script defer src="{{ '/assets/js/profile-interactions.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
+{% endif %}

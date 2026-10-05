@@ -215,6 +215,85 @@ ul.task-list input[type="checkbox"] {
   margin-right: 1rem;
 }
 
+// Draggable photo with the bio re-flowing around it (assets/js/profile-interactions.js)
+.about-page article.bio-reflow {
+  position: relative;
+
+  > .clearfix {
+    display: none;
+  }
+
+  .profile {
+    position: absolute;
+    z-index: 1;
+    margin: 0;
+
+    img {
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    &.is-dragging img {
+      cursor: grabbing;
+    }
+  }
+}
+
+.bio-flow {
+  position: relative;
+  margin-bottom: 1rem;
+
+  .bio-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: pre;
+  }
+
+  a.is-hover {
+    text-decoration: underline;
+  }
+}
+
+article:not(.bio-reflow) > .bio-flow {
+  display: none;
+}
+
+// ASCII-art trail over the profile photo
+.profile .has-ascii {
+  position: relative;
+  display: block;
+}
+
+.profile-ascii {
+  position: absolute;
+  pointer-events: none;
+}
+
+// 3D tilt with a light glare on the profile photo
+.profile .has-tilt {
+  position: relative;
+  display: block;
+  transition: transform 0.2s ease-out;
+
+  img {
+    display: block;
+  }
+}
+
+.profile-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
 @media (min-width: 576px) {
   .profile {
     width: 30%;
@@ -1210,6 +1289,13 @@ ninja-keys::part(ninja-input) {
 
 ninja-keys::part(ninja-input-wrapper) {
   background: var(--global-bg-color);
+}
+
+// news
+.news-scrollable {
+  max-height: 14rem;
+  overflow-y: auto;
+  margin-bottom: 2.5rem;
 }
 
 // newsletter
