@@ -11,6 +11,8 @@
   --global-text-color: #{$black-color};
   --global-text-color-light: #{$grey-color};
   --global-theme-color: #{$purple-color};
+  // Links in the page content: the purple of the Mila logo, 9.3:1 contrast on white.
+  --global-link-color: #662e7d;
   --global-hover-color: #{$purple-color};
   --global-hover-text-color: #{$white-color};
   --global-footer-bg-color: #{$grey-color-dark};
@@ -83,6 +85,8 @@ html[data-theme="dark"] {
   --global-text-color: #{$grey-color-light};
   --global-text-color-light: #{$grey-color};
   --global-theme-color: #{$purple-color-dark-mode};
+  // The Mila purple (hsl 283 46% 34%) lightened to 70%, 6.6:1 contrast on the dark background.
+  --global-link-color: #c18fd6;
   --global-hover-color: #{$purple-color-dark-mode};
   --global-hover-text-color: #{$white-color};
   --global-footer-bg-color: #{$grey-color-light};

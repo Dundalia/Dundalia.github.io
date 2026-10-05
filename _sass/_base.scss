@@ -49,6 +49,12 @@ table.table a {
   }
 }
 
+// Links in the page content use the Mila purple (--global-link-color, per theme in
+// _themes.scss), also on hover.
+[role="main"] a:not(.btn):not(.badge) {
+  color: var(--global-link-color);
+}
+
 .table-dark {
   background-color: transparent;
   &.table-bordered {
@@ -297,13 +303,13 @@ article:not(.bio-reflow) > .bio-flow {
   pointer-events: none;
 }
 
-// 3D tilt with a light glare and a rainbow foil sheen on the profile photo.
-// The script sets --pointer-x and --pointer-y to the cursor position over the photo.
+// 3D tilt with a light glare on the profile photo; the holographic foil is in
+// _holo-foil.scss. The script sets --pointer-x and --pointer-y to the cursor position
+// over the photo and animates the tilt with a spring.
 .profile .has-tilt {
   position: relative;
   display: block;
   isolation: isolate;
-  transition: transform 0.2s ease-out;
 
   img {
     display: block;
@@ -332,51 +338,8 @@ article:not(.bio-reflow) > .bio-flow {
   );
 }
 
-// Holographic foil after the "V" cards described in https://github.com/simeydotme/pokemon-cards-css
-// (written from its description and the rendered demo, no code taken from it).
-// Two diagonal stripe patterns at slightly different angles and spacings slide in
-// opposite directions with the cursor and are multiplied together, so light only
-// survives where their stripes overlap: a few bands of uneven width and spacing that
-// shift as the photo tilts. A vertical pastel rainbow colours them, a high-contrast
-// noise adds the glitter, and color-dodge lights up the photo only under the bands.
-// --holo-mask (set by the script from the `holo_mask` front matter) cuts the person
-// out, so the foil stays on the background.
-.profile-holo {
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2.2' intercept='-0.6'/%3E%3CfeFuncG type='linear' slope='2.2' intercept='-0.6'/%3E%3CfeFuncB type='linear' slope='2.2' intercept='-0.6'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
-    repeating-linear-gradient(0deg, #ffa3c2 0%, #ffd2a1 5%, #fbfba6 10%, #b4ffcb 15%, #a8f1ff 20%, #bdb9ff 25%, #f0b8ff 30%, #ffa3c2 35%),
-    repeating-linear-gradient(133deg, #000 0%, #000 2.2%, #fff 5.4%, #000 8.4%, #000 8.5%),
-    repeating-linear-gradient(129deg, #000 0%, #000 0.8%, #fff 3.2%, #000 5.5%, #000 5.6%),
-    radial-gradient(farthest-corner circle at var(--pointer-x, 50%) var(--pointer-y, 50%), #fff 0%, #aaa 60%, #666 120%);
-  background-size:
-    160px 160px,
-    200% 600%,
-    300% 300%,
-    300% 300%,
-    100% 100%;
-  background-position:
-    center,
-    0% var(--pointer-y, 50%),
-    calc(35% + 0.3 * var(--pointer-x, 50%)) calc(35% + 0.3 * var(--pointer-y, 50%)),
-    calc(65% - 0.3 * var(--pointer-x, 50%)) calc(65% - 0.3 * var(--pointer-y, 50%)),
-    center;
-  background-blend-mode: overlay, color, multiply, multiply, normal;
-  mix-blend-mode: color-dodge;
-  filter: brightness(0.9) contrast(2);
-  -webkit-mask-image: var(--holo-mask, linear-gradient(#000, #000));
-  mask-image: var(--holo-mask, linear-gradient(#000, #000));
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-}
-
-.has-tilt.is-tilting {
-  .profile-glare {
-    opacity: 1;
-  }
-
-  .profile-holo {
-    opacity: 0.9;
-  }
+.has-tilt.is-tilting .profile-glare {
+  opacity: 1;
 }
 
 @media (min-width: 576px) {

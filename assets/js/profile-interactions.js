@@ -3,8 +3,9 @@
 //   laid out with Pretext (https://github.com/chenglou/pretext). Double-click resets it.
 // - `ascii_hover`: an ASCII-art version of the photo follows the cursor and fades behind it.
 // - `tilt`: the photo tilts toward the cursor in 3D, with a light glare following it.
-// - `holo`: with `tilt`, adds a holographic foil while hovered; `holo_mask` limits it to
-//   the background, so the person stays clean like the artwork on a holo card.
+// - `holo`: with `tilt`, adds a holographic foil while hovered (ported from the Pokémon V
+//   card of pokemon-cards-css, see _sass/_holo-foil.scss); `holo_mask` limits it to the
+//   background, so the person stays clean like the artwork on a holo card.
 (() => {
   const profile = document.querySelector(".about-page .profile");
   const img = profile && profile.querySelector("img");
@@ -490,12 +491,16 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 3D tilt with a light glare, optionally over a rainbow foil sheen
+  // 3D tilt with a light glare, optionally over the holographic foil (_holo-foil.scss)
   // ---------------------------------------------------------------------------
 
   function setupTilt(img, holo) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const MAX_TILT = 8; // degrees at the edges of the photo
+    const MAX_TILT = 12; // degrees at the edges of the photo
+    // Spring constants per 60 fps frame, the values the pokemon-cards-css demo uses:
+    // the tilt and the foil follow the cursor softly, with a little lag.
+    const STIFFNESS = 0.066;
+    const DAMPING = 0.25;
 
     const host = img.parentElement; // <picture>, so the overlays tilt with the photo
     const frameBox = host.parentElement; // never transformed, gives stable pointer geometry
@@ -511,23 +516,56 @@
 
     let target = null; // pointer position over the photo, in 0..1 on both axes
     let frame = 0;
+    let lastTime = 0;
+    // Where the light currently is (x, y) and how lifted the photo is (lift, 0..1),
+    // each moving toward its goal on a spring.
+    const state = { x: 0.5, y: 0.5, lift: 0 };
+    const velocity = { x: 0, y: 0, lift: 0 };
 
-    // The overlays are drawn in CSS from --pointer-x and --pointer-y.
-    function apply() {
-      frame = 0;
-      host.classList.toggle("is-tilting", Boolean(target));
-      if (!target) {
-        host.style.transform = "";
-        return;
-      }
-      const { x, y } = target;
-      host.style.transform = `perspective(800px) rotateX(${(0.5 - y) * 2 * MAX_TILT}deg) rotateY(${(x - 0.5) * 2 * MAX_TILT}deg) scale(1.03)`;
+    // The overlays are drawn in CSS from these variables. The foil's positions follow
+    // the demo's mapping and are computed here instead of with calc() in the stylesheet:
+    // the production CSS minifier strips the spaces around `+`, which breaks the rule.
+    function render() {
+      const { x, y, lift } = state;
+      host.style.transform = `perspective(800px) rotateX(${(0.5 - y) * 2 * MAX_TILT}deg) rotateY(${(x - 0.5) * 2 * MAX_TILT}deg) scale(${1 + 0.03 * lift})`;
+      const backgroundX = 37 + 26 * x;
+      const backgroundY = 33 + 34 * y;
       host.style.setProperty("--pointer-x", `${x * 100}%`);
       host.style.setProperty("--pointer-y", `${y * 100}%`);
+      host.style.setProperty("--background-x", `${backgroundX}%`);
+      host.style.setProperty("--background-y", `${backgroundY}%`);
+      // The foil's stretched copy moves the opposite way. The demo negates the position,
+      // which brings that layer's tile edge inside the photo and cuts a band along a
+      // vertical line; mirroring it within 0-100% keeps the tile over the whole photo.
+      host.style.setProperty("--background-x-opposite", `${100 - backgroundX}%`);
+      host.style.setProperty("--background-y-opposite", `${100 - backgroundY}%`);
     }
 
-    function schedule() {
-      if (!frame) frame = requestAnimationFrame(apply);
+    function tick(now) {
+      const frames = lastTime ? Math.min(4, ((now - lastTime) * 60) / 1000) : 1;
+      lastTime = now;
+      const goal = target ? { ...target, lift: 1 } : { x: 0.5, y: 0.5, lift: 0 };
+      let moving = false;
+      for (const key of ["x", "y", "lift"]) {
+        velocity[key] += ((goal[key] - state[key]) * STIFFNESS - velocity[key] * DAMPING) * frames;
+        state[key] += velocity[key] * frames;
+        if (Math.abs(goal[key] - state[key]) > 0.0005 || Math.abs(velocity[key]) > 0.0005) moving = true;
+      }
+      host.classList.toggle("is-tilting", Boolean(target));
+      if (moving) {
+        render();
+        frame = requestAnimationFrame(tick);
+      } else {
+        Object.assign(state, goal);
+        render();
+        if (!target) host.style.transform = "";
+        frame = 0;
+        lastTime = 0;
+      }
+    }
+
+    function start() {
+      if (!frame) frame = requestAnimationFrame(tick);
     }
 
     img.addEventListener("pointermove", (event) => {
@@ -536,11 +574,11 @@
         x: Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1),
         y: Math.min(Math.max((event.clientY - rect.top) / img.offsetHeight, 0), 1),
       };
-      schedule();
+      start();
     });
     img.addEventListener("pointerleave", () => {
       target = null;
-      schedule();
+      start();
     });
 
     // Where the photo can't be dragged (small screens, phones), a tap turns it in the
@@ -557,13 +595,12 @@
         const angle = Math.PI * (2 * t - 0.75); // one turn, starting from the top-left
         target = { x: 0.5 + reach * Math.cos(angle), y: 0.5 + reach * Math.sin(angle) };
         if (t < 1) {
-          apply();
           sweepFrame = requestAnimationFrame(step);
         } else {
           sweepFrame = 0;
           target = null;
-          apply();
         }
+        start();
       };
       sweepFrame = requestAnimationFrame(step);
     });

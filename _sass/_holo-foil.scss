@@ -1,0 +1,119 @@
+// Holographic foil on the profile photo, ported from the "Pokémon V" card effect of
+// pokemon-cards-css by Simon Goellner (https://github.com/simeydotme/pokemon-cards-css,
+// files public/css/cards/v-regular.css and public/css/cards/base.css), together with its
+// grain texture (assets/img/holo-grain.webp).
+//
+// Copyright (C) Simon Goellner. This file is free software: you can redistribute it
+// and/or modify it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License. The full license text is in
+// _sass/holo-foil.LICENSE.
+//
+// Changes from the original:
+// - the card's .card__shine element and its :after become .profile-holo and its ::after,
+//   shown while the photo is hovered (.is-tilting);
+// - --pointer-x/-y, --background-x/-y and --background-x-opposite/-y-opposite are set by
+//   assets/js/profile-interactions.js, which also replaces the card's spring motion;
+//   calc() is avoided because the production CSS minifier breaks it;
+// - the :after layer's opposite position is mirrored (100% - x) instead of negated, so
+//   its stretched tile always covers the whole photo and no band is cut by a tile edge;
+// - the card's foil mask is replaced by the photo's background mask (--holo-mask), so
+//   the foil stays off the person;
+// - the sunpillar colour stops are written out (the original computes them from --space).
+
+@mixin holo-foil-layers {
+  background-image:
+    url("/assets/img/holo-grain.webp"),
+    repeating-linear-gradient(
+      to top,
+      var(--sunpillar-clr-1) 5%,
+      var(--sunpillar-clr-2) 10%,
+      var(--sunpillar-clr-3) 15%,
+      var(--sunpillar-clr-4) 20%,
+      var(--sunpillar-clr-5) 25%,
+      var(--sunpillar-clr-6) 30%,
+      var(--sunpillar-clr-1) 35%
+    ),
+    repeating-linear-gradient(
+      133deg,
+      #0e152e 0%,
+      hsl(180, 10%, 60%) 3.8%,
+      hsl(180, 29%, 66%) 4.5%,
+      hsl(180, 10%, 60%) 5.2%,
+      #0e152e 10%,
+      #0e152e 12%
+    ),
+    radial-gradient(
+      farthest-corner circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+      hsla(0, 0%, 0%, 0.1) 12%,
+      hsla(0, 0%, 0%, 0.15) 20%,
+      hsla(0, 0%, 0%, 0.25) 120%
+    );
+  background-blend-mode: screen, hue, hard-light;
+  -webkit-mask-image: var(--holo-mask, linear-gradient(#000, #000));
+  mask-image: var(--holo-mask, linear-gradient(#000, #000));
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.profile-holo {
+  --sunpillar-1: hsl(2, 100%, 73%);
+  --sunpillar-2: hsl(53, 100%, 69%);
+  --sunpillar-3: hsl(93, 100%, 69%);
+  --sunpillar-4: hsl(176, 100%, 76%);
+  --sunpillar-5: hsl(228, 100%, 74%);
+  --sunpillar-6: hsl(283, 100%, 73%);
+  --sunpillar-clr-1: var(--sunpillar-1);
+  --sunpillar-clr-2: var(--sunpillar-2);
+  --sunpillar-clr-3: var(--sunpillar-3);
+  --sunpillar-clr-4: var(--sunpillar-4);
+  --sunpillar-clr-5: var(--sunpillar-5);
+  --sunpillar-clr-6: var(--sunpillar-6);
+
+  display: grid;
+  overflow: hidden;
+  @include holo-foil-layers;
+  background-size:
+    500px 100%,
+    200% 700%,
+    300% 100%,
+    200% 100%;
+  background-position:
+    center,
+    0% var(--background-y, 50%),
+    var(--background-x, 50%) var(--background-y, 50%),
+    var(--background-x, 50%) var(--background-y, 50%);
+  filter: brightness(0.8) contrast(2.95) saturate(0.65);
+  mix-blend-mode: color-dodge;
+
+  // The same layers again, stretched differently and moving the opposite way, with the
+  // rainbow shifted: its bands slide past the ones below, splitting and recombining.
+  &::after {
+    --sunpillar-clr-1: var(--sunpillar-6);
+    --sunpillar-clr-2: var(--sunpillar-1);
+    --sunpillar-clr-3: var(--sunpillar-2);
+    --sunpillar-clr-4: var(--sunpillar-3);
+    --sunpillar-clr-5: var(--sunpillar-4);
+    --sunpillar-clr-6: var(--sunpillar-5);
+
+    content: "";
+    grid-area: 1 / 1;
+    border-radius: inherit;
+    @include holo-foil-layers;
+    background-size:
+      500px 100%,
+      200% 400%,
+      195% 100%,
+      200% 100%;
+    background-position:
+      center,
+      0% var(--background-y, 50%),
+      var(--background-x-opposite, 50%) var(--background-y-opposite, 50%),
+      var(--background-x, 50%) var(--background-y, 50%);
+    filter: brightness(1) contrast(2.5) saturate(1.75);
+    mix-blend-mode: soft-light;
+  }
+}
+
+.has-tilt.is-tilting .profile-holo {
+  opacity: 1;
+}
