@@ -21,7 +21,7 @@ ninja.data = [{
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/cv/";
+            window.location.href = "https://dundalia.github.io/CV/cv.pdf";
           },
         },{id: "post-a-post-with-plotly-js",
         
