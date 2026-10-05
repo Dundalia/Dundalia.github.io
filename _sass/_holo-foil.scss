@@ -10,7 +10,8 @@
 //
 // Changes from the original:
 // - the card's .card__shine element and its :after become .profile-holo and its ::after,
-//   shown while the photo is hovered (.is-tilting);
+//   faded in while the photo is hovered (opacity from the script's spring, like the
+//   card's --card-opacity; see .profile-holo in _base.scss);
 // - --pointer-x/-y, --background-x/-y and --background-x-opposite/-y-opposite are set by
 //   assets/js/profile-interactions.js, which also replaces the card's spring motion;
 //   calc() is avoided because the production CSS minifier breaks it;
@@ -114,8 +115,4 @@
     filter: brightness(1) contrast(2.5) saturate(1.75);
     mix-blend-mode: soft-light;
   }
-}
-
-.has-tilt.is-tilting .profile-holo {
-  opacity: 1;
 }

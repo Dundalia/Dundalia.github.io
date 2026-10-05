@@ -497,6 +497,7 @@
   function setupTilt(img, holo) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const MAX_TILT = 12; // degrees at the edges of the photo
+    const FOIL_SPEED = 0.6; // how far the foil moves per tilt, relative to the demo (1)
     // Spring constants per 60 fps frame, the values the pokemon-cards-css demo uses:
     // the tilt and the foil follow the cursor softly, with a little lag.
     const STIFFNESS = 0.066;
@@ -528,8 +529,10 @@
     function render() {
       const { x, y, lift } = state;
       host.style.transform = `perspective(800px) rotateX(${(0.5 - y) * 2 * MAX_TILT}deg) rotateY(${(x - 0.5) * 2 * MAX_TILT}deg) scale(${1 + 0.03 * lift})`;
-      const backgroundX = 37 + 26 * x;
-      const backgroundY = 33 + 34 * y;
+      // The demo maps the pointer to 37-63% and 33-67%; FOIL_SPEED narrows that range,
+      // so the bands travel less for the same tilt.
+      const backgroundX = 50 + 26 * FOIL_SPEED * (x - 0.5);
+      const backgroundY = 50 + 34 * FOIL_SPEED * (y - 0.5);
       host.style.setProperty("--pointer-x", `${x * 100}%`);
       host.style.setProperty("--pointer-y", `${y * 100}%`);
       host.style.setProperty("--background-x", `${backgroundX}%`);
@@ -539,6 +542,8 @@
       // vertical line; mirroring it within 0-100% keeps the tile over the whole photo.
       host.style.setProperty("--background-x-opposite", `${100 - backgroundX}%`);
       host.style.setProperty("--background-y-opposite", `${100 - backgroundY}%`);
+      // The glare and the foil fade with the lift, frame by frame (see .profile-holo).
+      host.style.setProperty("--overlay-opacity", Math.min(1, Math.max(0, lift)).toFixed(3));
     }
 
     function tick(now) {
@@ -551,14 +556,12 @@
         state[key] += velocity[key] * frames;
         if (Math.abs(goal[key] - state[key]) > 0.0005 || Math.abs(velocity[key]) > 0.0005) moving = true;
       }
-      host.classList.toggle("is-tilting", Boolean(target));
       if (moving) {
         render();
         frame = requestAnimationFrame(tick);
       } else {
         Object.assign(state, goal);
         render();
-        if (!target) host.style.transform = "";
         frame = 0;
         lastTime = 0;
       }
@@ -567,6 +570,10 @@
     function start() {
       if (!frame) frame = requestAnimationFrame(tick);
     }
+
+    // Start from a neutral transform rather than none, and keep it at rest: the photo
+    // then has its own layer from page load, and a hover never creates one mid-way.
+    render();
 
     img.addEventListener("pointermove", (event) => {
       const rect = frameBox.getBoundingClientRect();

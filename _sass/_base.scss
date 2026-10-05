@@ -326,8 +326,10 @@ article:not(.bio-reflow) > .bio-flow {
   height: 100%;
   border-radius: inherit;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  // Faded in and out by the script's spring, not by a CSS transition: Safari runs
+  // opacity transitions on the GPU and drops the foil's blend modes while they run,
+  // which darkens the photo for a moment.
+  opacity: var(--overlay-opacity, 0);
 }
 
 .profile-glare {
@@ -336,10 +338,6 @@ article:not(.bio-reflow) > .bio-flow {
     rgba(255, 236, 214, 0.18),
     rgba(255, 236, 214, 0) 55%
   );
-}
-
-.has-tilt.is-tilting .profile-glare {
-  opacity: 1;
 }
 
 @media (min-width: 576px) {
