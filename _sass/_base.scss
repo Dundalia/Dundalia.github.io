@@ -721,6 +721,13 @@ footer.sticky-bottom {
 
   article h2 {
     font-size: 1.75rem;
+    margin-top: 4rem;
+  }
+
+  // Same heading-to-content gap as the news table (its cells have 0.3rem padding)
+  .publications {
+    margin-top: 0;
+    padding-top: 0.3rem;
   }
 }
 
