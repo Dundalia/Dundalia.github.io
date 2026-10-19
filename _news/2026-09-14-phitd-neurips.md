@@ -6,4 +6,4 @@ inline: true
 related_posts: false
 ---
 
-Our paper "*$\phi$TD: Distributional Reinforcement Learning using Characteristic Functions*" has been accepted as a poster at NeurIPS 2026.
+Our paper "[*$\phi$TD: Distributional Reinforcement Learning using Characteristic Functions*](https://neurips.cc/virtual/2026/loc/paris/poster/154745)" has been accepted as a poster at NeurIPS 2026.
